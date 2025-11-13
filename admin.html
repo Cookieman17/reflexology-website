@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Jane Amicucci Reflexology</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Admin Panel</h1>
+            <p>Jane Amicucci Reflexology</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="admin-card">
+            <h2>Login to Admin Panel</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="admin-btn">Login</button>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+
+        <!-- Admin Dashboard (hidden initially) -->
+        <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+            <div class="dashboard-header">
+                <h2>Welcome, Jane!</h2>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="showTab('blog')">Blog Posts</button>
+                <button class="tab-btn" onclick="showTab('settings')">Settings</button>
+            </div>
+
+            <!-- Blog Management Tab -->
+            <div id="blogTab" class="tab-content">
+                <div class="blog-actions">
+                    <button onclick="showNewPostForm()" class="admin-btn">New Blog Post</button>
+                </div>
+
+                <!-- New Post Form -->
+                <div id="newPostForm" class="admin-card" style="display: none;">
+                    <h3>Create New Blog Post</h3>
+                    <form onsubmit="createBlogPost(event)">
+                        <div class="form-group">
+                            <label for="postTitle">Title:</label>
+                            <input type="text" id="postTitle" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postExcerpt">Excerpt:</label>
+                            <textarea id="postExcerpt" name="excerpt" rows="3" placeholder="Brief description of the post..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="postContent">Content:</label>
+                            <textarea id="postContent" name="content" rows="10" required placeholder="Write your blog post content here..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="postImage">Featured Image URL (optional):</label>
+                            <input type="url" id="postImage" name="image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="admin-btn">Publish Post</button>
+                            <button type="button" onclick="hideNewPostForm()" class="admin-btn secondary">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Blog Posts List -->
+                <div class="blog-posts-list">
+                    <h3>Published Posts</h3>
+                    <div id="blogPostsList">
+                        <!-- Posts will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settingsTab" class="tab-content" style="display: none;">
+                <div class="admin-card">
+                    <h3>Site Settings</h3>
+                    <div class="form-group">
+                        <label for="siteTitle">Site Title:</label>
+                        <input type="text" id="siteTitle" value="Jane Amicucci Reflexology">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email:</label>
+                        <input type="email" id="contactEmail" value="jane@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="tel" id="phoneNumber" value="+447584634345">
+                    </div>
+                    <button class="admin-btn">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
