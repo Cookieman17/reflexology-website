@@ -2,8 +2,8 @@
 
 // Simple authentication (in production, use proper backend authentication)
 const ADMIN_CREDENTIALS = {
-    username: 'janelamicucci@gmail.com',
-    password: 'Reflexology'
+    username: 'jane',
+    password: 'jane'
 };
 
 // Blog posts storage (in production, use a database)
