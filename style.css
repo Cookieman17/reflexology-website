@@ -197,15 +197,15 @@ header::before {
 /* Mobile video positioning - zoom in and focus left with height crop */
 @media (max-width: 768px) {
   .hero {
-    height: 60vh; /* Further reduce height on mobile */
+    height: 55vh; /* Crop height even more */
   }
   
   .hero-video {
-    min-width: 220%; /* Increased zoom for mobile */
-    height: 60vh; /* Match hero height */
+    min-width: 250%; /* More zoom for tighter crop */
+    height: 55vh; /* Match hero height */
     width: auto;
     min-height: auto;
-    transform: translate(-40%, -50%); /* Adjusted positioning for more zoom */
+    transform: translate(-20%, -50%); /* Shift right to show leftmost edge */
     object-fit: cover;
     object-position: left center;
   }
