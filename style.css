@@ -171,7 +171,7 @@ header::before {
 
 
 .hero {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,13 +194,27 @@ header::before {
   object-fit: cover;
 }
 
-/* Mobile video positioning - zoom in and focus left */
+/* Mobile video positioning - zoom in and focus left with height crop */
 @media (max-width: 768px) {
+  .hero {
+    height: 60vh; /* Further reduce height on mobile */
+  }
+  
   .hero-video {
-    min-width: 150%;
-    min-height: 150%;
-    transform: translate(-30%, -50%);
+    min-width: 220%; /* Increased zoom for mobile */
+    height: 60vh; /* Match hero height */
+    width: auto;
+    min-height: auto;
+    transform: translate(-40%, -50%); /* Adjusted positioning for more zoom */
+    object-fit: cover;
     object-position: left center;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero {
+    height: 70vh;
   }
 }
 .hero::after {
