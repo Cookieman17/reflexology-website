@@ -53,12 +53,12 @@ A professional website for Jane Amicucci's reflexology and holistic healing prac
 
 3. **90 Minute Complete Healing (£75)**
    - Full holistic experience
-   - Reflexology + sound healing + crystals
+   - Reflexology + inviting balance through the subtle medicine of vibration and tone + crystals
    - Energy work and meditation
 
 ## 🏥 Holistic Approach
 
-- **Sound Healing** - Angel tuners and OM tuning forks
+- **Inviting Balance Through the Subtle Medicine of Vibration and Tone** - Angel tuners and OM tuning forks
 - **Crystal Therapy** - Chakra balancing and energy harmonization
 - **Pendulum Work** - Energy flow assessment
 - **Hands-Off Energy Healing** - Divine light and angelic presence
