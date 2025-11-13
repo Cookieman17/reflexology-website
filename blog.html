@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <!-- Blog Posts -->
+  
     <section class="blog-content">
         <div class="container">
             <div id="blogPosts" class="blog-grid">
@@ -106,7 +106,30 @@
                     menuToggle.classList.remove('active');
                 });
             });
+            
+            // Track visitor to blog page
+            trackVisitor('blog');
         });
+        
+        // Visitor tracking system
+        function trackVisitor(page) {
+            const visits = JSON.parse(localStorage.getItem('siteVisits') || '[]');
+            const now = new Date().toISOString();
+            
+            // Add current visit
+            visits.push({
+                timestamp: now,
+                page: page || 'unknown',
+                userAgent: navigator.userAgent.substring(0, 100) // Truncated for storage
+            });
+            
+            // Keep only last 1000 visits to prevent storage overflow
+            if (visits.length > 1000) {
+                visits.splice(0, visits.length - 1000);
+            }
+            
+            localStorage.setItem('siteVisits', JSON.stringify(visits));
+        }
     </script>
 </body>
 </html>

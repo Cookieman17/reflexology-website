@@ -2,8 +2,8 @@
 
 // Simple authentication (in production, use proper backend authentication)
 const ADMIN_CREDENTIALS = {
-    username: 'jane',
-    password: 'reflexology2025'
+    username: 'janelamicucci@gmail.com',
+    password: 'Reflexology'
 };
 
 // Blog posts storage (in production, use a database)
@@ -77,6 +77,11 @@ function showTab(tabName) {
     // Show selected tab
     document.getElementById(tabName + 'Tab').style.display = 'block';
     event.target.classList.add('active');
+    
+    // Load analytics if analytics tab is selected
+    if (tabName === 'analytics') {
+        loadAnalytics();
+    }
 }
 
 // Blog post management
@@ -208,6 +213,120 @@ function showMessage(message, type) {
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
 });
+
+// Analytics functions
+function getVisitorStats() {
+    const visits = JSON.parse(localStorage.getItem('siteVisits') || '[]');
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const thisWeekStart = new Date(today.getTime() - (today.getDay() * 24 * 60 * 60 * 1000));
+    const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    
+    const stats = {
+        allTime: visits.length,
+        thisMonth: 0,
+        thisWeek: 0,
+        today: 0,
+        recentVisits: []
+    };
+    
+    visits.forEach(visit => {
+        const visitDate = new Date(visit.timestamp);
+        
+        if (visitDate >= today) {
+            stats.today++;
+        }
+        
+        if (visitDate >= thisWeekStart) {
+            stats.thisWeek++;
+        }
+        
+        if (visitDate >= thisMonthStart) {
+            stats.thisMonth++;
+        }
+    });
+    
+    // Get recent visits for detailed view
+    stats.recentVisits = visits.slice(-10).reverse().map(visit => ({
+        date: new Date(visit.timestamp).toLocaleDateString('en-GB'),
+        time: new Date(visit.timestamp).toLocaleTimeString('en-GB'),
+        browser: getBrowserName(visit.userAgent)
+    }));
+    
+    return stats;
+}
+
+function getBrowserName(userAgent) {
+    if (userAgent.includes('Chrome')) return 'Chrome';
+    if (userAgent.includes('Firefox')) return 'Firefox';
+    if (userAgent.includes('Safari')) return 'Safari';
+    if (userAgent.includes('Edge')) return 'Edge';
+    return 'Unknown';
+}
+
+function loadAnalytics() {
+    const stats = getVisitorStats();
+    
+    document.getElementById('todayCount').textContent = stats.today;
+    document.getElementById('weekCount').textContent = stats.thisWeek;
+    document.getElementById('monthCount').textContent = stats.thisMonth;
+    document.getElementById('allTimeCount').textContent = stats.allTime;
+    
+    // Load recent visits table
+    const recentVisitsTable = document.getElementById('recentVisitsTable');
+    if (stats.recentVisits.length === 0) {
+        recentVisitsTable.innerHTML = '<tr><td colspan="3">No recent visits recorded</td></tr>';
+    } else {
+        recentVisitsTable.innerHTML = stats.recentVisits.map(visit => `
+            <tr>
+                <td>${visit.date}</td>
+                <td>${visit.time}</td>
+                <td>${visit.browser}</td>
+            </tr>
+        `).join('');
+    }
+    
+    // Create simple daily chart for last 7 days
+    createDailyChart(stats);
+}
+
+function createDailyChart(stats) {
+    const visits = JSON.parse(localStorage.getItem('siteVisits') || '[]');
+    const chartContainer = document.getElementById('dailyChart');
+    const dailyCounts = {};
+    
+    // Initialize last 7 days
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        dailyCounts[dateStr] = 0;
+    }
+    
+    // Count visits by day
+    visits.forEach(visit => {
+        const visitDate = new Date(visit.timestamp).toISOString().split('T')[0];
+        if (dailyCounts.hasOwnProperty(visitDate)) {
+            dailyCounts[visitDate]++;
+        }
+    });
+    
+    // Create simple bar chart
+    const maxCount = Math.max(...Object.values(dailyCounts), 1);
+    const chartHTML = Object.entries(dailyCounts).map(([date, count]) => {
+        const height = (count / maxCount) * 100;
+        const dayName = new Date(date).toLocaleDateString('en-GB', { weekday: 'short' });
+        return `
+            <div class="chart-bar">
+                <div class="bar" style="height: ${height}%"></div>
+                <div class="bar-label">${dayName}</div>
+                <div class="bar-count">${count}</div>
+            </div>
+        `;
+    }).join('');
+    
+    chartContainer.innerHTML = chartHTML;
+}
 
 // Export blog posts for main site
 window.getBlogPosts = function() {

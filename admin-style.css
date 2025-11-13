@@ -261,3 +261,130 @@
         flex-direction: column;
     }
 }
+
+/* Analytics Dashboard Styles */
+.analytics-overview {
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf7f0 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px solid #e9cf75;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(233,207,117,0.3);
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #d4b25a;
+    margin: 0.5rem 0;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    padding: 1rem;
+    background: #fafafa;
+    border-radius: 8px;
+    gap: 1rem;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 80px;
+}
+
+.bar {
+    width: 100%;
+    min-height: 4px;
+    background: linear-gradient(135deg, #e9cf75 0%, #d4b25a 100%);
+    border-radius: 4px 4px 0 0;
+    transition: height 0.5s ease;
+}
+
+.bar-label {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.bar-count {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.visitors-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.visitors-table th,
+.visitors-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.visitors-table th {
+    background: #f8f8f8;
+    font-weight: 600;
+    color: #2b2006;
+}
+
+.visitors-table tr:hover {
+    background: #fafafa;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .chart-container {
+        height: 150px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}

@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- Header / Navigation -->
 <header>
   <div class="nav-container">
     <div class="brand">
@@ -37,7 +36,7 @@
 </header>
 
 
-  <!-- Hero -->
+  
   <section id="home" class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="images/beach .mp4" type="video/mp4">
@@ -50,7 +49,7 @@
     </div>
   </section>
 
-  <!-- Holistic Approach -->
+  
   <section id="approach" class="block approach">
     <h2>My Holistic Approach</h2>
 
@@ -106,7 +105,7 @@
     <p>I believe true healing happens in safe, nurturing spaces. My role is to hold that space for you, so you can return to your own natural centre of balance, peace, and wholeness.</p>
   </section>
 
-  <!-- Sessions -->
+
   <section id="sessions" class="block services">
   <h2>Sessions & Prices</h2>
     <div class="cards">
@@ -165,7 +164,7 @@
     <p>I am mobile and bring treatments to you — because resting in the comfort of your own home is vital.</p>
   </section>
 
-  <!-- Testimonials -->
+
   <section id="testimonials" class="block testimonials-section">
     <h2>What My Clients Say</h2>
     <div class="testimonials-grid">
@@ -219,7 +218,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+
   <section id="contact" class="block contact-banner">
   <h2>Ready to restore balance?</h2>
     
@@ -274,5 +273,29 @@
     });
   </script>
 
-</body>
+  <script>
+    // Visitor tracking system
+    function trackVisitor() {
+      const visits = JSON.parse(localStorage.getItem('siteVisits') || '[]');
+      const now = new Date().toISOString();
+      
+      // Add current visit
+      visits.push({
+        timestamp: now,
+        page: 'home',
+        userAgent: navigator.userAgent.substring(0, 100) // Truncated for storage
+      });
+      
+      // Keep only last 1000 visits to prevent storage overflow
+      if (visits.length > 1000) {
+        visits.splice(0, visits.length - 1000);
+      }
+      
+      localStorage.setItem('siteVisits', JSON.stringify(visits));
+    }
+    
+    // Track visit when page loads
+    trackVisitor();
+  </script>
+  </body>
 </html>
