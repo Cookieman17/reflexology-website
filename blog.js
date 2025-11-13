@@ -5,8 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNewsletterForm();
 });
 
-function loadBlogPosts() {
-    const blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+async function loadBlogPosts() {
+    let blogPosts = [];
+    
+    // Try to load from GitHub JSON file first
+    try {
+        const response = await fetch('./posts.json');
+        if (response.ok) {
+            blogPosts = await response.json();
+        } else {
+            // Fallback to localStorage
+            blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+        }
+    } catch (error) {
+        console.error('Error loading posts:', error);
+        // Fallback to localStorage
+        blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+    }
+    
     const blogContainer = document.getElementById('blogPosts');
     const noPostsDiv = document.getElementById('noPosts');
     
@@ -48,8 +64,21 @@ function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString('en-GB', options);
 }
 
-function openBlogModal(postId) {
-    const blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+async function openBlogModal(postId) {
+    let blogPosts = [];
+    
+    // Load posts from GitHub JSON file
+    try {
+        const response = await fetch('./posts.json');
+        if (response.ok) {
+            blogPosts = await response.json();
+        } else {
+            blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+        }
+    } catch (error) {
+        blogPosts = JSON.parse(localStorage.getItem('publicBlogPosts')) || [];
+    }
+    
     const post = blogPosts.find(p => p.id === postId);
     
     if (!post) return;

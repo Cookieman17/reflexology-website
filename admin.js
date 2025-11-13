@@ -6,21 +6,30 @@ const ADMIN_CREDENTIALS = {
     password: 'jane'
 };
 
-// Blog posts storage (in production, use a database)
-let blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [
-    {
-        id: 1,
-        title: "The Healing Power of Reflexology",
-        excerpt: "Discover how reflexology can help restore balance and promote natural healing in your body.",
-        content: "Reflexology is an ancient healing practice that applies pressure to specific points on the feet, hands, and ears. These points correspond to different organs and systems in the body...",
-        image: "",
-        date: "2025-11-01",
-        published: true
+// Blog posts storage - loaded from GitHub JSON file
+let blogPosts = [];
+
+// Load posts from GitHub JSON file
+async function loadPostsFromGitHub() {
+    try {
+        const response = await fetch('./posts.json');
+        if (response.ok) {
+            const posts = await response.json();
+            blogPosts = posts;
+        } else {
+            console.error('Failed to load posts from GitHub');
+            // Fallback to localStorage if JSON file fails
+            blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        }
+    } catch (error) {
+        console.error('Error loading posts:', error);
+        // Fallback to localStorage
+        blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
     }
-];
+}
 
 // Authentication functions
-function handleLogin(event) {
+async function handleLogin(event) {
     event.preventDefault();
     
     const username = document.getElementById('username').value;
@@ -39,7 +48,8 @@ function handleLogin(event) {
         document.getElementById('loginForm').style.display = 'none';
         document.getElementById('adminDashboard').style.display = 'block';
         
-        // Load blog posts
+        // Load blog posts from GitHub
+        await loadPostsFromGitHub();
         loadBlogPosts();
         
         errorDiv.style.display = 'none';
@@ -60,10 +70,11 @@ function logout() {
 }
 
 // Check if already logged in
-function checkAuthStatus() {
+async function checkAuthStatus() {
     if (sessionStorage.getItem('adminLoggedIn') === 'true') {
         document.getElementById('loginForm').style.display = 'none';
         document.getElementById('adminDashboard').style.display = 'block';
+        await loadPostsFromGitHub();
         loadBlogPosts();
     }
 }
@@ -185,6 +196,41 @@ function saveBlogPosts() {
     localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
 }
 
+// Export posts to JSON format for updating GitHub file
+function exportPostsToJSON() {
+    const jsonContent = JSON.stringify(blogPosts, null, 2);
+    const blob = new Blob([jsonContent], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'posts.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showMessage('Posts exported! Replace the posts.json file in your repository with the downloaded file, then commit and push to sync across all devices.', 'success');
+}
+
+// Show export instructions
+function showSyncInstructions() {
+    const instructions = `
+To sync your blog posts across all devices:
+
+1. Click "Export Posts" to download the updated posts.json file
+2. Replace the posts.json file in your repository with the downloaded file
+3. Commit and push the changes to GitHub
+4. Posts will now be synced across all devices!
+
+This process ensures all your blog posts are backed up and accessible from any device.
+    `;
+    
+    if (confirm(instructions + '\n\nWould you like to export the posts now?')) {
+        exportPostsToJSON();
+    }
+}
+
 function updateMainSiteBlog() {
     // This would typically update the main site's blog section
     // For now, we'll store the posts in localStorage for the main site to read
@@ -214,7 +260,8 @@ function showMessage(message, type) {
 }
 
 // Initialize admin panel
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadPostsFromGitHub();
     checkAuthStatus();
 });
 
