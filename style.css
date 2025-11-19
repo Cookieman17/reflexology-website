@@ -824,3 +824,133 @@ footer a { color: #f2dcd9; text-decoration: none; }
     transform: rotate(-45deg) translate(6px, -6px);
   }
 }
+
+/* New Photo Implementations */
+.approach-with-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.approach-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.approach-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.approach-with-image h3,
+.approach-with-image p {
+  position: relative;
+  z-index: 2;
+}
+
+.approach-with-nature {
+  position: relative;
+  overflow: hidden;
+}
+
+.nature-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.nature-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.approach-overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+}
+
+.about-secondary {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(233,207,117,0.3);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+
+.about-secondary:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.about-secondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-with-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.8;
+  z-index: 1;
+  border: 3px solid #e9cf75;
+}
+
+.testimonial-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-with-bg .testimonial-content,
+.testimonial-with-bg .testimonial-author {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .approach-image {
+    width: 50%;
+    opacity: 0.1;
+  }
+  
+  .about-secondary {
+    display: none;
+  }
+  
+  .testimonial-bg {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    right: 10px;
+  }
+}
