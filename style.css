@@ -888,8 +888,8 @@ footer a { color: #f2dcd9; text-decoration: none; }
   grid-column: 2;
   grid-row: 1;
   margin: 0;
-  width: 50%;
-  height: 60%;
+  width: 120px;
+  height: 80px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(233,207,117,0.3);
