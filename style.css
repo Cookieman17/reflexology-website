@@ -758,6 +758,29 @@ footer a { color: #f2dcd9; text-decoration: none; }
   }
 }
 
+/* Mobile approach image */
+.mobile-approach-image {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-approach-image {
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .mobile-approach-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 3px solid rgba(233,207,117,0.3);
+  }
+}
+
 /* Enhanced collage layout for approach section */
 .approach-two-column {
   display: grid;
