@@ -893,9 +893,12 @@ footer a { color: #f2dcd9; text-decoration: none; }
 
 .about-closing {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 2rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .about-closing-text {
