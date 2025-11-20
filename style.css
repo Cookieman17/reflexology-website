@@ -194,20 +194,37 @@ header::before {
   object-fit: cover;
 }
 
-/* Mobile video positioning - zoom in and focus left with height crop */
+/* Mobile video positioning - proper responsive sizing */
 @media (max-width: 768px) {
   .hero {
-    height: 55vh; /* Crop height even more */
+    height: 50vh;
   }
   
   .hero-video {
-    min-width: 250%; /* More zoom for tighter crop */
-    height: 55vh; /* Match hero height */
-    width: auto;
-    min-height: auto;
-    transform: translate(-20%, -50%); /* Shift right to show leftmost edge */
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: none;
     object-fit: cover;
-    object-position: left center;
+    object-position: center center;
+  }
+  
+  .hero-text {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin: 0.8rem 0;
+    line-height: 1.4;
   }
 }
 
@@ -455,6 +472,25 @@ section.block:nth-of-type(even) { background: #f9f3e7; }
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (max-width: 768px) {
+  .contact-cta {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-info strong {
+    font-size: 1.1rem;
+  }
+  
+  .contact-info span {
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
 .contact-info strong { display: block; font-weight: 700; color: #2b2006; font-size: 1.05rem; }
 .contact-info span { display: block; color: #4b4130; font-size: 0.95rem; }
 .contact-actions { display: flex; gap: 0.6rem; }
@@ -492,6 +528,13 @@ section.block:nth-of-type(even) { background: #f9f3e7; }
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
 }
 
 .testimonial-card {
@@ -614,8 +657,40 @@ footer a { color: #f2dcd9; text-decoration: none; }
 }
 
 @media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-portrait img { max-height: 360px; }
+  .about-grid { 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+  
+  .about-portrait {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .about-portrait img { 
+    max-height: 300px;
+    width: 100%;
+  }
+  
+  .about-copy {
+    padding: 0 1rem;
+  }
+  
+  .about-closing {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  
+  .about-closing-text {
+    max-width: 100% !important;
+  }
+  
+  .about-secondary {
+    width: 250px;
+    height: 200px;
+    margin: 0 auto;
+  }
 }
 
 /* Holistic approach section styling */
@@ -650,6 +725,37 @@ footer a { color: #f2dcd9; text-decoration: none; }
 }
 .accessibility-message strong {
   color: #2b2006;
+}
+
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .book-btn {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    min-height: 44px;
+    display: inline-block;
+  }
+  
+  .card-cta {
+    padding: 0.75rem 1.5rem !important;
+    min-height: 44px;
+    font-size: 1rem !important;
+  }
+  
+  .hero .button {
+    padding: 0.75rem 2rem !important;
+    font-size: 1rem !important;
+    min-height: 44px;
+  }
 }
 
 /* Enhanced collage layout for approach section */
@@ -713,7 +819,7 @@ footer a { color: #f2dcd9; text-decoration: none; }
 @media (max-width: 768px) {
   .approach-two-column {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   
   .approach-video-column {
@@ -723,7 +829,23 @@ footer a { color: #f2dcd9; text-decoration: none; }
   }
   
   .approach-video {
-    height: 250px;
+    height: 200px;
+    max-width: 100%;
+  }
+  
+  .approach-text-column .approach-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .approach-text-column .approach-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .approach-text-column .approach-card p,
+  .approach-text-column .approach-card li {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 }
 .approach-small:nth-child(even) { 
@@ -774,9 +896,46 @@ footer a { color: #f2dcd9; text-decoration: none; }
 @media (max-width: 600px) {
   .approach-card {
     padding: 1rem;
+    margin-bottom: 1rem;
   }
   .approach-card h3 {
     font-size: 1.1rem;
+  }
+  
+  .block {
+    padding: 2rem 1rem;
+  }
+  
+  .block h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Touch improvements */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .book-btn, .card-cta {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    min-height: 44px;
+  }
+  
+  .hero .button {
+    padding: 0.75rem 2rem !important;
+    font-size: 1rem !important;
+    min-height: 44px;
   }
 }
 
@@ -810,6 +969,44 @@ footer a { color: #f2dcd9; text-decoration: none; }
   
   .nav-links.active {
     left: 0;
+  }
+  
+  .nav-links.active a {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .brand .logo {
+    font-size: 1.3rem !important;
+    line-height: 1.2;
+  }
+  
+  .tagline {
+    font-size: 0.8rem !important;
+    margin-top: 0.2rem;
+  }
+  
+  .nav-links.active a {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .brand .logo {
+    font-size: 1.3rem !important;
+    line-height: 1.2;
+  }
+  
+  .tagline {
+    font-size: 0.8rem !important;
+    margin-top: 0.2rem;
   }
   
   .nav-links a {
@@ -849,6 +1046,44 @@ footer a { color: #f2dcd9; text-decoration: none; }
   
   .mobile-menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .mobile-menu-toggle {
+    padding: 0.5rem;
+    margin: 0.25rem;
+  }
+  
+  .nav-links.active {
+    padding: 1rem 0;
+  }
+  
+  .nav-links.active a {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .book-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+  
+  .card-cta {
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    font-size: 1rem;
   }
 }
 
