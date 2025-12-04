@@ -19,8 +19,8 @@
   }
   
   .mobile-gentle-image img {
-    width: 70%;\n    max-width: 250px;
-    height: auto;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
   }
