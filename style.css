@@ -207,7 +207,7 @@ header::before {
     min-height: 100%;
     transform: none;
     object-fit: cover;
-    object-position: center center;
+    object-position: right center;
   }
   
   .hero-text {
@@ -473,6 +473,15 @@ section.block:nth-of-type(even) { background: #f9f3e7; }
   margin-right: auto;
 }
 
+.messaging-note {
+  background: rgba(255,246,222,0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .contact-cta {
     padding: 1rem;
@@ -660,36 +669,50 @@ footer a { color: #f2dcd9; text-decoration: none; }
   .about-grid { 
     grid-template-columns: 1fr; 
     gap: 1.5rem;
+    text-align: center;
   }
   
   .about-portrait {
-    max-width: 300px;
+    max-width: 280px;
     margin: 0 auto;
+    order: -1;
   }
   
   .about-portrait img { 
-    max-height: 300px;
+    max-height: 280px;
     width: 100%;
+    border-radius: 15px;
   }
   
   .about-copy {
     padding: 0 1rem;
+    text-align: left;
   }
   
   .about-closing {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 1.5rem;
-    text-align: left;
+    text-align: center;
   }
   
   .about-closing-text {
     max-width: 100% !important;
+    text-align: left;
+    padding: 0 1rem;
   }
   
   .about-secondary {
-    width: 250px;
+    width: 200px;
     height: 200px;
     margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .about-secondary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
