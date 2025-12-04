@@ -769,9 +769,9 @@ footer a { color: #f2dcd9; text-decoration: none; }
   
   .about-portrait {
     width: 150px;
-    height: 150px;
+    height: 200px;
     margin: 0 auto 25px auto;
-    border-radius: 50%;
+    border-radius: 10px;
     overflow: hidden;
   }
   
