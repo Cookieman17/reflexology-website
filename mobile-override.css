@@ -1,0 +1,18 @@
+/* Mobile About Section Override - Hide green top image */
+@media (max-width: 768px) {
+  .about-closing {
+    display: block !important;
+    flex-direction: column !important;
+    text-align: left !important;
+  }
+  
+  .about-secondary {
+    display: none !important;
+  }
+  
+  .about-closing-text {
+    text-align: left !important;
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
+  }
+}
