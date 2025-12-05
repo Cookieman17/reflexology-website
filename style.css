@@ -31,13 +31,15 @@ body {
 }
 
 .mobile-menu-toggle::before {
-  content: '🌀';
-  font-size: 28px;
+  content: '◉';
+  font-size: 32px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.6s ease;
+  color: #2b2006;
+  text-shadow: 0 0 0 #2b2006, 1px 1px 0 #2b2006, -1px -1px 0 #2b2006, 1px -1px 0 #2b2006, -1px 1px 0 #2b2006;
 }
 
 .mobile-menu-toggle.active::before {
