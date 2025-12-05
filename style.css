@@ -874,7 +874,24 @@ footer a { color: #f2dcd9; text-decoration: none; }
   }
 }
 
-/* Hero Logo */\n.hero-logo {\n  max-width: 300px;\n  width: 90%;\n  height: auto;\n  margin-bottom: 1.5rem;\n  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));\n}\n\n@media (max-width: 768px) {\n  .hero-logo {\n    max-width: 280px;\n    width: 80%;\n    margin-bottom: 1rem;\n  }\n}\n\n/* Hero Quote Section */
+/* Hero Logo */
+.hero-logo {
+  max-width: 300px;
+  width: 90%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 280px;
+    width: 80%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hero Quote Section */
 .hero-quote {
   text-align: center;
   padding: 2rem 1rem;
