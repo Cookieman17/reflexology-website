@@ -874,20 +874,17 @@ footer a { color: #f2dcd9; text-decoration: none; }
   }
 }
 
-/* Hero Logo */
-.hero-logo {
-  max-width: 300px;
-  width: 90%;
-  height: auto;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+/* Navigation Logo */
+.nav-logo {
+  height: 60px;
+  width: auto;
+  max-width: 250px;
 }
 
 @media (max-width: 768px) {
-  .hero-logo {
-    max-width: 280px;
-    width: 80%;
-    margin-bottom: 1rem;
+  .nav-logo {
+    height: 45px;
+    max-width: 200px;
   }
 }
 
