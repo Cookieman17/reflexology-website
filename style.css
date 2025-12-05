@@ -31,7 +31,7 @@ body {
 }
 
 .mobile-menu-toggle::before {
-  content: '◉';
+  content: '☀';
   font-size: 32px;
   position: absolute;
   top: 50%;
